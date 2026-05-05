@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fileshare MVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-animation"></div>
+
+    <div class="app-container glass-panel">
+        <header class="app-header">
+            <h1>File<span>Share</span></h1>
+            <p>Local Network Hub</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="text-tab">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Notepad
+            </button>
+            <button class="tab-btn" data-tab="file-tab">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+                Storage
+            </button>
+        </nav>
+
+        <main class="tab-content">
+            <!-- Text Tab -->
+            <section id="text-tab" class="tab-pane active">
+                <div class="editor-header">
+                    <span class="status-indicator" id="text-status">Synced</span>
+                    <button id="save-text-btn" class="action-btn primary">Save Text</button>
+                </div>
+                <textarea id="shared-textarea"
+                    placeholder="Type or paste something to share with the network..."></textarea>
+            </section>
+
+            <!-- File Tab -->
+            <section id="file-tab" class="tab-pane">
+                <div id="drop-zone" class="drop-zone glass-panel">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p>Drag & Drop files here or <span id="browse-files-text">browse</span></p>
+                    <input type="file" id="file-input" multiple hidden>
+                </div>
+
+                <div class="files-header">
+                    <h2>Available Files</h2>
+                    <button id="refresh-files-btn" class="action-btn icon-btn" title="Refresh">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="file-list-container">
+                    <ul id="file-list" class="file-list">
+                        <!-- File items populated dynamically -->
+                        <div class="empty-state">Loading files...</div>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

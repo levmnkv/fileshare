@@ -1,42 +1,42 @@
 # FileShare MVP
 
-A lightweight, blazing fast, and beautifully designed web service for sharing files and text across a local network. Built specifically with Raspberry Pi 4 (ARM64) in mind, this project uses a Go backend and a dependency-free Vanilla HTML/CSS/JS frontend.
+Легковесный, невероятно быстрый веб-сервис с красивым дизайном для обмена файлами и текстом в локальной сети. Проект создан специально для работы на микрокомпьютерах вроде Raspberry Pi 4 (ARM64). Backend написан на Go, а Frontend — на чистых HTML/CSS/JS без лишних зависимостей.
 
-## Features
+## Возможности
 
-- **Text Sharing (Notepad)**: A synchronized text area for quick copy-pasting of snippets, URLs, or notes across the network.
-- **File Storage**: Drag-and-drop file upload, file listing, downloading, and deletion.
-- **Responsive Premium Design**: Stunning glassmorphism UI with dark mode, fluid animations, and Toast notifications.
-- **Lightweight & Fast**: Zero external dependencies on the frontend. Compiled to a single statically linked binary on the backend.
-- **Docker Ready**: Multi-stage `Dockerfile` optimized for ARM64 and Alpine Linux.
+- **Обмен текстом (Notepad)**: Синхронизированное текстовое поле для быстрого обмена фрагментами кода, ссылками или заметками по сети.
+- **Хранилище файлов**: Загрузка файлов (поддержка Drag-and-drop), просмотр списка, скачивание и удаление.
+- **Премиальный адаптивный дизайн**: Потрясающий интерфейс в стиле Glassmorphism с темной темой, плавными анимациями и всплывающими уведомлениями (Toast).
+- **Легковесность и скорость**: Ноль внешних зависимостей на фронтенде. Бэкенд компилируется в единый статически слинкованный бинарный файл.
+- **Поддержка Docker**: Multi-stage `Dockerfile`, оптимизированный для архитектуры ARM64 и Alpine Linux.
 
-## Tech Stack
+## Технологический стек
 
 - **Backend**: Go (Golang)
 - **Frontend**: HTML5, Vanilla JavaScript, CSS3
-- **Containerization**: Docker
+- **Контейнеризация**: Docker
 
-## Installation & Usage (Docker)
+## Установка и запуск (через Docker)
 
-The easiest way to run the service is via Docker. By default, the application is configured to store files in `/mnt/docker-data` on your host machine.
+Самый простой способ запустить сервис — использовать Docker. По умолчанию приложение настроено на сохранение файлов в директорию `/mnt/docker-data` на вашей хост-машине.
 
-### Prerequisites
-- Docker installed on your target machine (e.g., Raspberry Pi).
+### Требования
+- Установленный Docker на целевом устройстве (например, Raspberry Pi).
 
-### Quick Start
+### Быстрый старт
 
-1. Clone the repository:
+1. Склонируйте репозиторий:
    ```bash
    git clone https://github.com/levmnkv/fileshare.git
    cd fileshare
    ```
 
-2. Build the Docker image:
+2. Соберите Docker-образ:
    ```bash
    docker build -t fileshare-app .
    ```
 
-3. Run the container (make sure the volume path exists or let Docker create it):
+3. Запустите контейнер (убедитесь, что путь для тома существует, или Docker создаст его сам):
    ```bash
    docker run -d \
      -p 8080:8080 \
@@ -44,27 +44,27 @@ The easiest way to run the service is via Docker. By default, the application is
      --name fileshare fileshare-app
    ```
 
-4. Access the application in your browser:
-   `http://<YOUR_DEVICE_IP>:8080`
+4. Откройте приложение в браузере по адресу:
+   `http://<IP_ВАШЕГО_УСТРОЙСТВА>:8080`
 
-## Configuration
+## Конфигурация
 
-You can customize the upload directory using the `UPLOAD_DIR` environment variable. By default, it falls back to `/mnt/docker-data`.
+Вы можете изменить директорию для загрузок с помощью переменной окружения `UPLOAD_DIR`. По умолчанию используется `/mnt/docker-data`.
 
-If running locally without Docker:
+Если вы запускаете проект локально без Docker:
 ```bash
 export UPLOAD_DIR="./uploads"
 go run main.go
 ```
 
-## Development
+## Разработка
 
-The project follows Test-Driven Development (TDD) principles. You can run the test suite using standard Go tooling:
+Проект следует принципам разработки через тестирование (TDD). Вы можете запустить набор тестов, используя стандартные инструменты Go:
 
 ```bash
 go test -v ./...
 ```
 
-## License
+## Лицензия
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Этот проект распространяется под лицензией MIT — подробности смотрите в файле [LICENSE](LICENSE).
